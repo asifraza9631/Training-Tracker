@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!--<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} 
+				- %msg%n</Pattern> -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="customLogging"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!--<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} 
+				- %msg%n</Pattern> -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{requestId}] [%X{id}] - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.fissionlab.coe.service.EmployeeService" level="debug"  additivity="false">
+        <appender-ref ref="customLogging" />
+    </logger>
+    
+	<root level="INFO">
+		<appender-ref ref="console" />
+	</root>
+</configuration>

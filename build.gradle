@@ -1,0 +1,127 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.2'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'jacoco'
+	id "org.sonarqube" version "3.5.0.2730"
+	id "au.com.dius.pact" version "4.4.2"
+	id 'pmd'
+	id 'checkstyle'
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+jacocoTestReport {
+	afterEvaluate {
+		def excludes = ['**/com/fissionlab/coe/config/**',
+						'**/com/fissionlab/coe/entity/**',
+						'**/com/fissionlab/coe/enums/**',
+						'**/com/fissionlab/coe/utils/**',
+						'**/com/fissionlab/coe/exception/**',
+						'**/com/fissionlab/coe/model/**']
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: excludes)
+		}))
+	}
+	reports {
+		xml.required = false
+		csv.required = false
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	}
+}
+
+
+ext {
+	set('testcontainersVersion', "1.17.6")
+}
+
+group = 'com.fissionlab.coe'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+apply plugin: 'checkstyle'
+checkstyle {
+	toolVersion '7.8.1'
+	configFile file("config/checkstyle/checkstyle.xml")
+	checkstyleTest.enabled = false
+}
+
+pmd {
+	toolVersion = "6.37.0"                             // The version of PMD to use.
+	ruleSetFiles = files("config/pmd/pmd.xml")         // The location of the configuration file.
+	ruleSets = []                                      // Ignore the default rules. The ones this config
+	// uses are set with the ruleSetFiles property.
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	// Test containers dependencies
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'io.rest-assured:rest-assured'
+	testImplementation 'org.testcontainers:postgresql'
+	testImplementation 'org.testcontainers:testcontainers:1.17.3'
+	testImplementation group: 'org.testcontainers', name: 'junit-jupiter', version: '1.17.3'
+
+	//PACT Integration
+	testImplementation 'au.com.dius.pact:consumer:4.4.2'
+	testImplementation 'au.com.dius.pact.consumer:junit5:4.4.2'
+	testImplementation 'au.com.dius.pact:provider:4.4.2'
+	testImplementation 'au.com.dius.pact.provider:junit5:4.4.2'
+	testImplementation 'au.com.dius.pact.provider:junit5spring:4.4.2'
+	testImplementation 'org.junit-pioneer:junit-pioneer:2.0.0-RC1'
+	
+	//Lombok dependency
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+	testCompileOnly 'org.projectlombok:lombok:1.18.26'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectName", "Spring-Boot-Starter"
+		property "sonar.projectKey", "Spring-Boot-Starter"
+		property "sonar.host.url", "http://localhost:9000"
+		property "sonar.login", project.property("SONAR_TOKEN")
+		// Add any additional SonarQube properties here
+	}
+}
+
+pact {
+	publish {
+	}
+	broker {
+		pactBrokerUrl = "http://localhost:9292"
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+	}
+}
