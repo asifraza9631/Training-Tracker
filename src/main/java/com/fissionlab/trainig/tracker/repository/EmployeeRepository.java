@@ -1,9 +1,8 @@
-package com.fissionlab.coe.repository;
+package com.fissionlab.trainig.tracker.repository;
 
+import com.fissionlab.trainig.tracker.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.fissionlab.coe.entity.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {

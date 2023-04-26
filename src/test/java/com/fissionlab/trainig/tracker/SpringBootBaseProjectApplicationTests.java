@@ -1,4 +1,4 @@
-package com.fissionlab.coe;
+package com.fissionlab.trainig.tracker;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

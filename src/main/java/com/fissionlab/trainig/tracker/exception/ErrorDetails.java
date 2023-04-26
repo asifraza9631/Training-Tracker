@@ -1,4 +1,4 @@
-package com.fissionlab.coe.exception;
+package com.fissionlab.trainig.tracker.exception;
 
 import java.util.Date;
 

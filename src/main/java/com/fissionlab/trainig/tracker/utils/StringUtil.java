@@ -1,4 +1,4 @@
-package com.fissionlab.coe.utils;
+package com.fissionlab.trainig.tracker.utils;
 
 public final class StringUtil {
     public static boolean isNullOrEmpty(String str) {

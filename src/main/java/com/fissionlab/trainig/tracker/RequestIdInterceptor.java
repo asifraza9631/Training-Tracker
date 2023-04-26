@@ -1,4 +1,4 @@
-package com.fissionlab.coe;
+package com.fissionlab.trainig.tracker;
 
 import java.util.Map;
 import java.util.UUID;

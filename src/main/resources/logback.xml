@@ -18,7 +18,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com.fissionlab.coe.service.EmployeeService" level="debug"  additivity="false">
+	<logger name="com.fissionlab.trainig.tracker.service.EmployeeService" level="debug" additivity="false">
         <appender-ref ref="customLogging" />
     </logger>
     

@@ -1,8 +1,11 @@
-package com.fissionlab.coe.controller;
+package com.fissionlab.trainig.tracker.controller;
 
 import java.util.List;
 import java.util.Map;
-import com.fissionlab.coe.config.EndPointConfig;
+import com.fissionlab.trainig.tracker.config.EndPointConfig;
+import com.fissionlab.trainig.tracker.entity.Employee;
+import com.fissionlab.trainig.tracker.exception.ResourceNotFoundException;
+import com.fissionlab.trainig.tracker.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,9 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.fissionlab.coe.entity.Employee;
-import com.fissionlab.coe.exception.ResourceNotFoundException;
-import com.fissionlab.coe.service.EmployeeService;
 
 @RestController
 @RequestMapping(value = EndPointConfig.API_V1)

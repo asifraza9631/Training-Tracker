@@ -37,7 +37,7 @@ ext {
 	set('testcontainersVersion', "1.17.6")
 }
 
-group = 'com.fissionlab.coe'
+group = 'com.fissionlab.trainig.tracker'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 

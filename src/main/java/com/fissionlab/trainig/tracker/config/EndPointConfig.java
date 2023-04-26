@@ -1,4 +1,4 @@
-package com.fissionlab.coe.config;
+package com.fissionlab.trainig.tracker.config;
 
 public class EndPointConfig {
 public static final String  WELCOME = "/welcome";

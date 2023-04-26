@@ -1,4 +1,4 @@
-package com.fissionlab.coe.enums;
+package com.fissionlab.trainig.tracker.enums;
 
 public enum EnvironmentType {
 

@@ -1,4 +1,4 @@
-package com.fissionlab.coe.utils;
+package com.fissionlab.trainig.tracker.utils;
 
 import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;

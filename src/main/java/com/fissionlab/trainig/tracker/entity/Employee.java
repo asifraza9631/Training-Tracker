@@ -1,4 +1,4 @@
-package com.fissionlab.coe.entity;
+package com.fissionlab.trainig.tracker.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

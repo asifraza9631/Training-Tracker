@@ -1,4 +1,4 @@
-package com.fissionlab.coe.exception;
+package com.fissionlab.trainig.tracker.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
