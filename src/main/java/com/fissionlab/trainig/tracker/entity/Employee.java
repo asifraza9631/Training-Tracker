@@ -1,41 +1,56 @@
 package com.fissionlab.trainig.tracker.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-@Table(name = "employee")
+import java.time.LocalDateTime;
+
 @Entity
-@Data
-@AllArgsConstructor
+@Table(name = "employees")
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@Getter
+@Setter
 public class Employee {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column(name = "first_name", nullable = false)
-    private String firstName;
-	
-	@Column(name =  "last_name", nullable = false)
-    private String lastName;
-	
-	@Column(name = "email_address", nullable = false)
-    private String emailId;
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    private Integer orgEmpId;
+    private String fName;
+    private String lName;
+    private String type;
 
-    @Column(name =  "phone")
-    private  String phone;
-    public Employee(String firstName, String lastName, String emailId, String phone) {
-         this.firstName = firstName;
-         this.lastName = lastName;
-         this.emailId = emailId;
-         this.phone = phone;
-    }    
+    @ManyToOne
+    @JoinColumn(name = "designation_id")
+    private Designation designation;
 
-    }
+    private Boolean billable;
+
+    @ManyToOne
+    @JoinColumn(name = "practice_id")
+    private Practice practice;
+
+    private LocalDateTime expStartDate;
+    private LocalDateTime fissionStartDate;
+    private String contactNumber;
+    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "reporting_manager_id")
+    private Employee reportingManager;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id")
+    private Organization organization;
+
+}
