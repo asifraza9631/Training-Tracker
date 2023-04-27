@@ -2,6 +2,7 @@ package com.fissionlab.trainig.tracker.controller;
 
 import com.fissionlab.trainig.tracker.config.EndPointConfig;
 import com.fissionlab.trainig.tracker.entity.Organization;
+import com.fissionlab.trainig.tracker.entity.Practice;
 import com.fissionlab.trainig.tracker.service.impl.OrganizationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,16 @@ public class OrganizationController {
              return new ResponseEntity<>(organizations, HttpStatus.OK);
          }
      }
+
+
+    @GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS)
+    public ResponseEntity<List<Practice>> getAllPractices() {
+        List<Practice>   practices = organizationService.getAllPractice();
+
+        if (practices.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(practices, HttpStatus.OK);
+        }
+    }
 }
