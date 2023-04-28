@@ -1,6 +1,5 @@
 package com.fissionlab.trainig.tracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,13 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "practice")
-@Setter
+@Table(name = "clients")
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-public class Practice {
+@NoArgsConstructor
+public class Client {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -24,9 +25,13 @@ public class Practice {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private String status;
+
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "org_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
     private Organization organization;
 
 

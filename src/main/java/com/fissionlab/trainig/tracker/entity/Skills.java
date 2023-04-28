@@ -2,32 +2,29 @@ package com.fissionlab.trainig.tracker.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "practice")
-@Setter
+@Table(name = "skills")
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Practice {
+public class Skills {
+
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "org_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "org_id")
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
     private Organization organization;
-
-
 }
