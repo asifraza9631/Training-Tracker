@@ -1,6 +1,6 @@
 package com.fissionlab.trainig.tracker.config;
 
-public class EndPointConfig {
+public class EndPointConfig  extends  Object {
     public static final String WELCOME = "/welcome";
 
     public static final String API_V1 = "/api/v1";
@@ -13,6 +13,10 @@ public class EndPointConfig {
     public static final String ORGANIZATION_SKILLS_DETAILS = "/organization/skills";
 
     public static final String ORGANIZATION_DESIGNATION_DETAILS = "/organization/designations";
+
+    public static final String ORGANIZATION_CLIENT_DETAILS = "/organization/clients";
+
+
 
 
 }
