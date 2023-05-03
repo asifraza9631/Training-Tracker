@@ -1,12 +1,16 @@
 package com.fissionlab.trainig.tracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "practice")
@@ -14,20 +18,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Practice {
+public class Practice extends AuditableEntity {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+	@Column(name = "name", nullable = false)
+	private String name;
+	
+	@Column(name = "org_id" )
+	private String orgId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "org_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
-    private Organization organization;
-
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "org_id", referencedColumnName = "id")
+//	@JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
+//	private Organization organization;
 
 }
