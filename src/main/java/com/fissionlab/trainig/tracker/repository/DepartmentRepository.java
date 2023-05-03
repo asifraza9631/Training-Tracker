@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.fissionlab.trainig.tracker.entity.Client;
+import com.fissionlab.trainig.tracker.entity.Departments;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, String> {
+public interface DepartmentRepository extends JpaRepository<Departments, String> {
 
-	List<Client> findByNameContainingIgnoreCase(String name);
+	List<Departments> findByNameContainingIgnoreCase(String name);
 
 }

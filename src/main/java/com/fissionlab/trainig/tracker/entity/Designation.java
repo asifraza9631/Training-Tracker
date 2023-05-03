@@ -1,15 +1,16 @@
 package com.fissionlab.trainig.tracker.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "designation")
@@ -17,34 +18,18 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Designation {
+public class Designation extends AuditableEntity {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_time")
-    private LocalDateTime createdTime;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    @Column(name = "modified_time")
-    private LocalDateTime modifiedTime;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "org_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
-    private Organization organization;
-
+	@Column(name = "org_id")
+	private String orgId;
 
 
 }
