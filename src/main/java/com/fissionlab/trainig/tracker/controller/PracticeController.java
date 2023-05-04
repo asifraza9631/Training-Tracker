@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fissionlab.trainig.tracker.DTO.PracticeDTO;
 import com.fissionlab.trainig.tracker.config.EndPointConfig;
-import com.fissionlab.trainig.tracker.entity.Departments;
 import com.fissionlab.trainig.tracker.entity.Practice;
-import com.fissionlab.trainig.tracker.exception.DepartmentNotFoundException;
 import com.fissionlab.trainig.tracker.exception.PracticeNotFoundException;
 import com.fissionlab.trainig.tracker.service.impl.PracticeServiceImpl;
 
@@ -25,26 +24,27 @@ public class PracticeController {
 	private PracticeServiceImpl practiceService;
 
 	@GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS)
-	public ResponseEntity<List<Practice>> getAllPractices() throws PracticeNotFoundException {
-		List<Practice> practices = practiceService.getAllPractices();
+	public ResponseEntity<List<PracticeDTO>> getAllPractices() throws PracticeNotFoundException {
+		List<PracticeDTO> practices = practiceService.getAllPractices();
 
 		if (practices.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
-			return new ResponseEntity<>(practices, HttpStatus.OK);
+			return ResponseEntity.status(HttpStatus.OK).body(practices);
 		}
 	}
-	
-	 @GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS_SEARCH)
-	    public ResponseEntity<List<Practice>> searchPracticeBasedOnName(@RequestParam("query") String query)  throws PracticeNotFoundException {
-	        List<Practice> skills = practiceService.getPracticeListBasedOnName(query);
 
-	        if (skills.isEmpty()) {
-	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	        } else {
-	            return new ResponseEntity<>(skills, HttpStatus.OK);
-	        }
+	@GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS_SEARCH)
+	public ResponseEntity<List<PracticeDTO>> searchPracticeBasedOnName(@RequestParam("query") String query)
+			throws PracticeNotFoundException {
+//		List<Practice> skills = practiceService.getPracticeListBasedOnName(query);
 
-	    }
+//		if (skills.isEmpty()) {
+//			return new ResponseEntity<List<PracticeDTO>>(HttpStatus.NO_CONTENT);
+//		} else {
+//			return new ResponseEntity<List<PracticeDTO>>(HttpStatus.OK);
+//		}
+        return null;
+	}
 
 }

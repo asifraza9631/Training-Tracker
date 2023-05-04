@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,28 +31,20 @@ import com.fissionlab.trainig.tracker.repository.SkillsRepository;
 import com.fissionlab.trainig.tracker.service.impl.OrganizationServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(EndPointConfig.API_V1)
+@Slf4j
 public class OrganizationController {
 
 	@Autowired
 	private OrganizationServiceImpl organizationService;
-
+	
 	@Autowired
-	private OrganizationRepository organizationRepository;
+	private OrganizationServiceImpl organizationServiceImpl;
 
-	@Autowired
-	private DepartmentRepository departmentRepository;
-
-	@Autowired
-	private DesignationRepository designationRepository;
-
-	@Autowired
-	private PracticeRepository practiceRepository;
-
-	@Autowired
-	private SkillsRepository skillsRepository;
+		
 
 	@GetMapping(EndPointConfig.ORGANIZATION_DETAILS)
 	public ResponseEntity<List<Organization>> getAllOrganizations() {
@@ -65,119 +58,12 @@ public class OrganizationController {
 	}
 
 	@GetMapping("/getorg")
-	public OrganizationDTO getOrgCompleteDetails(HttpServletRequest request) {
-		String orgId = request.getHeader("orgId");
-		OrganizationDTO org = new OrganizationDTO();
-		Optional<Organization> orgOpt = organizationRepository.findById(orgId);
-		if (orgOpt.isPresent()) {
-			org.setId(orgOpt.get().getId());
-			org.setName(orgOpt.get().getName());
-		}
-
-		List<Departments> departments = departmentRepository.findAll();
-		DepartmentDTO departmentDTO = new DepartmentDTO();
-		List<DepartmentDTO> departmentDTOs = new ArrayList<>();
-
-		if (!departments.isEmpty()) {
-
-			for (Departments department : departments) {
-
-				departmentDTO.setId(department.getId());
-				departmentDTO.setName(department.getName());
-				departmentDTO.setEmail(department.getEmail());
-				departmentDTO.setType(department.getType());
-
-				departmentDTOs.add(departmentDTO);
-			}
-		}
-		org.setDepartments(departmentDTOs);
-		return org;
-	}
-
-	@GetMapping("/getorg1")
-
-	public OrganizationDTO getOrgCompleteDetails1(HttpServletRequest request) {
-
-		String orgId = request.getHeader("orgId");
-
-		OrganizationDTO org = new OrganizationDTO();
-
-		Optional<Organization> orgOpt = organizationRepository.findById(orgId);
-
-		if (orgOpt.isPresent()) {
-			org.setId(orgOpt.get().getId());
-			org.setName(orgOpt.get().getName());
-		}
-		List<Designation> designations = designationRepository.findAll();
-		DesignationDTO designationDTO = new DesignationDTO();
-		List<DesignationDTO> designationDTOs = new ArrayList<>();
-		if (!designations.isEmpty()) {
-			for (Designation designation : designations) {
-				designationDTO.setId(designation.getId());
-				designationDTO.setName(designation.getName());
-				designationDTOs.add(designationDTO);
-			}
-		}
-		org.setDesignations(designationDTOs);
-		return org;
-
-	}
-
-	@GetMapping("/getorg2")
-
-	public OrganizationDTO getOrgCompleteDetails2(HttpServletRequest request) {
-
-		String orgId = request.getHeader("orgId");
-
-		OrganizationDTO org = new OrganizationDTO();
-
-		Optional<Organization> orgOpt = organizationRepository.findById(orgId);
-
-		if (orgOpt.isPresent()) {
-			org.setId(orgOpt.get().getId());
-			org.setName(orgOpt.get().getName());
-		}
-		List<Practice> practices = practiceRepository.findAll();
-		PracticeDTO practiceDTO = new PracticeDTO();
-		List<PracticeDTO> practiceDTOs = new ArrayList<>();
-		if (!practices.isEmpty()) {
-			for (Practice practice : practices) {
-				practiceDTO.setId(practice.getId());
-				practiceDTO.setName(practice.getName());
-				practiceDTOs.add(practiceDTO);
-			}
-		}
-		org.setPractices(practiceDTOs);
-		return org;
-
-	}
-
-	@GetMapping("/getorg3")
-
-	public OrganizationDTO getOrgCompleteDetails3(HttpServletRequest request) {
-
-		String orgId = request.getHeader("orgId");
-
-		OrganizationDTO org = new OrganizationDTO();
-
-		Optional<Organization> orgOpt = organizationRepository.findById(orgId);
-
-		if (orgOpt.isPresent()) {
-			org.setId(orgOpt.get().getId());
-			org.setName(orgOpt.get().getName());
-		}
-		List<Skills> skills = skillsRepository.findAll();
-		SkillsDTO skillsDTO = new SkillsDTO();
-		List<SkillsDTO> skillsDTOs = new ArrayList<>();
-		if (!skills.isEmpty()) {
-			for (Skills skill : skills) {
-				skillsDTO.setId(skill.getId());
-				skillsDTO.setName(skill.getName());
-				skillsDTOs.add(skillsDTO);
-			}
-		}
-		org.setSkills(skillsDTOs);
-		return org;
-
+	public  ResponseEntity<OrganizationDTO>  getOrgCompleteDetails(HttpServletRequest request) {
+		
+		
+		OrganizationDTO organizationDTO = organizationServiceImpl.getOrgCompleteDetails(request);
+		return  new ResponseEntity<OrganizationDTO>(organizationDTO, HttpStatus.ACCEPTED);
 	}
 }
+	
+	
