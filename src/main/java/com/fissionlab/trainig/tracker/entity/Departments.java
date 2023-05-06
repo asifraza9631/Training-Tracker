@@ -1,7 +1,5 @@
 package com.fissionlab.trainig.tracker.entity;
 
-import java.time.LocalDateTime;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
@@ -35,7 +33,6 @@ public class Departments extends AuditableEntity {
 	@Column(name = "email_alias", nullable = false)
 	private String email;
 
-	
 	@Column(name = "org_id")
 	private String orgId;
 
