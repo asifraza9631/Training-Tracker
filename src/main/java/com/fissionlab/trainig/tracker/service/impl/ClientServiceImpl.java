@@ -12,6 +12,7 @@ import com.fissionlab.trainig.tracker.entity.Client;
 import com.fissionlab.trainig.tracker.entity.Project;
 import com.fissionlab.trainig.tracker.exception.ClientNotFoundException;
 import com.fissionlab.trainig.tracker.repository.ClientRepository;
+import com.fissionlab.trainig.tracker.repository.ProjectRepository;
 import com.fissionlab.trainig.tracker.service.ClientService;
 
 @Service
@@ -19,6 +20,11 @@ public class ClientServiceImpl implements ClientService {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private ProjectRepository projectRepository;
+
+	private List<Project> ;
 
 	@Override
 
@@ -26,6 +32,7 @@ public class ClientServiceImpl implements ClientService {
 
 		try {
 			List<Client> clients = clientRepository.findAll();
+			List<Project> findAll = projectRepository.findAll();
 			return clients;
 		} catch (Exception e) {
 			throw new ClientNotFoundException(" Client Details not found");

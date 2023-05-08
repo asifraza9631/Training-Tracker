@@ -27,7 +27,7 @@ public class ClientDTO {
 	private String orgId;
 	private List<Project> listProjects;
 	
-	public ClientDTO entityToClient(Client client) {
+	public ProjectDTO entityToClient(Project client) {
 		ClientDTO dto = new ClientDTO();
 		dto.setName(client.getName());
 		return dto;
