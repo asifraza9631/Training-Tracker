@@ -24,7 +24,6 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ProjectRepository projectRepository;
 
-	private List<Project> ;
 
 	@Override
 
