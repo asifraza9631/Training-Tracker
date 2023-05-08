@@ -101,7 +101,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 		List<Practice> practices = practiceRepository.findAll();
 		List<PracticeDTO> practiceDTOs = new ArrayList<>();
-		if (!practices.isEmpty()) {
+		/*if (!practices.isEmpty()) {
 			for (Practice practice : practices) {
 				PracticeDTO practiceDTO = new PracticeDTO();
 				practiceDTO.setId(practice.getId());
@@ -112,7 +112,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 				practiceDTOs.add(practiceDTO);
 			}
 		}
-		org.setPractices(practiceDTOs);
+*/		org.setPractices(practiceDTOs);
 
 		List<Skills> skills = skillsRepository.findAll();
 		List<SkillsDTO> skillsDTOs = new ArrayList<>();
