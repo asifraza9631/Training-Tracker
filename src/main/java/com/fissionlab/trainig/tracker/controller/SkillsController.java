@@ -42,7 +42,6 @@ public class SkillsController {
 	        } else {
 	            return new ResponseEntity<>(skills, HttpStatus.OK);
 	        }
-
 	    }
 
 }

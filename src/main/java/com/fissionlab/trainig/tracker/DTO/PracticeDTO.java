@@ -4,58 +4,22 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+import com.fissionlab.trainig.tracker.entity.Client;
 import com.fissionlab.trainig.tracker.entity.Practice;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
+@Data
 public class PracticeDTO {
-	
-	@Id
-	private String id;
-	
+
 	private String name;
-	private Instant createdDateTime;
-	private Instant modifiedDateTime;
+	private String type;
+	private String orgId;
+	private LocalDateTime startDate;
+	private LocalDateTime endDate;
 
-	public PracticeDTO() {
-	}
 
-	public PracticeDTO(Practice practice) {
-		this.id = practice.getId();
-		this.name = practice.getName();
-		this.createdDateTime = practice.getCreatedDateTime();
-		this.modifiedDateTime = practice.getModifiedDateTime();
-	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Instant getCreatedDateTime() {
-		return createdDateTime;
-	}
-
-	public void setCreatedDateTime(LocalDateTime createdDateTime) {
-		this.createdDateTime = createdDateTime.atZone(ZoneId.systemDefault()).toInstant();
-	}
-
-	public Instant getModifiedDateTime() {
-		return modifiedDateTime;
-	}
-
-	public void setModifiedDateTime(LocalDateTime modifiedDateTime) {
-		this.modifiedDateTime = modifiedDateTime.atZone(ZoneId.systemDefault()).toInstant();
-	}
 }

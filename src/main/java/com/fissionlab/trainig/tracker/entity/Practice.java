@@ -37,10 +37,10 @@ public class Practice extends AuditableEntity {
 	@Column(name = "org_id")
 	private String orgId;
 
-	@Column(name = "created_date", nullable = false)
+	@Column(name = "created_date")
 	private LocalDateTime createdDate;
 
-	@Column(name = "modified_date", nullable = false)
+	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
 	
 
@@ -73,22 +73,6 @@ public class Practice extends AuditableEntity {
 	public Instant getModifiedDateTime() {
 		 return modifiedDate.atZone(ZoneOffset.UTC).toInstant();
     }
-//
-//	public Instant getModifiedDateTime() 
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public Instant getCreatedDateTime() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	
-//	
 
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "org_id", referencedColumnName = "id")
-//	@JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
-//	private Organization organization;
 
 }

@@ -35,7 +35,7 @@ public class PracticeServiceImpl implements PracticeService {
 			List<PracticeDTO> practiceDTOs= new ArrayList<>();
 			PracticeDTO pDto= new PracticeDTO();
 			for(Practice p: practices) {
-				pDto=convertToDto(p);
+			//	pDto=convertToDto(p);
 				practiceDTOs.add(pDto);
 			}
 			return practiceDTOs;
@@ -53,9 +53,9 @@ public class PracticeServiceImpl implements PracticeService {
 
 	}
 
-	private PracticeDTO convertToDto(Practice practice) {
+	/*private PracticeDTO convertToDto(Practice practice) {
 		PracticeDTO practiceDto = new PracticeDTO();
-		practiceDto.setId(practice.getId());
+		//practiceDto.setId(practice.getId());
 		practiceDto.setName(practice.getName());
 
 //		LocalDateTime createdDateTime = practice.getCreatedDateTime().atZone(ZoneId.systemDefault()).toLocalDateTime();
@@ -80,7 +80,7 @@ public class PracticeServiceImpl implements PracticeService {
 		practice.setModifiedDateTime(modifiedDateTime);
 
 		return practice;
-	}
+	}*/
 
 	private Practice createEntityFromDto(PracticeDTO practiceDto) {
 		Practice practice = new Practice();
