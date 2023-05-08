@@ -26,11 +26,4 @@ public class ClientDTO {
 	private LocalDateTime endDate;
 	private String orgId;
 	private List<Project> listProjects;
-	
-	public ProjectDTO entityToClient(Project client) {
-		ClientDTO dto = new ClientDTO();
-		dto.setName(client.getName());
-		return dto;
-	}
-
 }
