@@ -92,12 +92,11 @@ public class ClientServiceImpl implements ClientService {
 		 Client client = new Client();
 		 ClientDTO clientDTO1 = new ClientDTO();
 		 client.setName(clientDTO.getName());
-		 if(clientDTO.getEndDate() !=null)
+		 if (clientDTO.getEndDate() != null)
 		 {
 			 client.setStatus(String.valueOf(ClientStatus.INACTIVE));
 		 }
-         else
-		 {
+         else {
 			  client.setStatus(String.valueOf(ClientStatus.ACTIVE));
 		 }
 
@@ -151,7 +150,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public String updateClientById(String id, String status) {
-		log.info(status+ "    " + id);
+		log.info(status + "    " + id);
 		int count = clientRepository.updateClientStatusById(id, status);
 		return  "updated";
 	}

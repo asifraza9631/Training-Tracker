@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fissionlab.trainig.tracker.DTO.PracticeDTO;
 import com.fissionlab.trainig.tracker.config.EndPointConfig;
-import com.fissionlab.trainig.tracker.entity.Practice;
 import com.fissionlab.trainig.tracker.exception.PracticeNotFoundException;
 import com.fissionlab.trainig.tracker.service.impl.PracticeServiceImpl;
 

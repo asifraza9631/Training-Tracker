@@ -19,7 +19,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Designation extends AuditableEntity {
-
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -30,6 +29,4 @@ public class Designation extends AuditableEntity {
 
 	@Column(name = "org_id")
 	private String orgId;
-
-
 }
