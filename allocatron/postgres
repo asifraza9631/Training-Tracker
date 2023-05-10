@@ -1,0 +1,7 @@
+FROM postgres
+
+LABEL author="Allocatron"
+LABEL description="Postgres Image for Allocatron"
+LABEL version="1.0"
+
+COPY *.sql /docker-entrypoint-initdb.d/
