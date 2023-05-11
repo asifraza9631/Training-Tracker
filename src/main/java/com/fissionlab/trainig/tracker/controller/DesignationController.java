@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fissionlab.trainig.tracker.config.EndPointConfig;
-import com.fissionlab.trainig.tracker.entity.Departments;
 import com.fissionlab.trainig.tracker.entity.Designation;
-import com.fissionlab.trainig.tracker.exception.DepartmentNotFoundException;
 import com.fissionlab.trainig.tracker.exception.DesignationNotFoundException;
 import com.fissionlab.trainig.tracker.service.impl.DesignationServiceImpl;
 

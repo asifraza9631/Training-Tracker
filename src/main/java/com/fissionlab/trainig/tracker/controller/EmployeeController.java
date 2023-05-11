@@ -42,10 +42,9 @@ public class EmployeeController {
              public String   createEmployee(@RequestBody  @Validated EmployeeDTO employeeDTO, HttpServletRequest request) throws JsonProcessingException {
                  try {
                      Validator.isValidate(employeeDTO);
-                     Employee employee= employeeRepository.findByOrgEmpId(employeeDTO.getOrgEmpId());
-                     if(employee ==null)
-                     {
-                  Employee emp= employeeService.createEmployee(employeeDTO, request);
+                     Employee employee = employeeRepository.findByOrgEmpId(employeeDTO.getOrgEmpId());
+                     if (employee == null) {
+                  Employee emp = employeeService.createEmployee(employeeDTO, request);
                          ObjectMapper mapper = new ObjectMapper();
                          mapper.registerModule(new JavaTimeModule());
                          String jsonData = mapper.writeValueAsString(emp);
@@ -56,10 +55,8 @@ public class EmployeeController {
                          employeeAudit.setOrgId(request.getHeader("FL"));
                          employeeAudit.setEventDate(LocalDateTime.now());
                          employeeAuditRepository.save(employeeAudit);
-
                      }
-                     else
-                     {
+                     else {
                           return  "employee org id already exists " + employee.getOrgEmpId();
                      }
                  } catch (CustomValidationException e) {

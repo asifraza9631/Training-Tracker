@@ -1,9 +1,8 @@
 package com.fissionlab.trainig.tracker.exception;
 
-public class PracticeNotFoundException extends Exception{
+public class PracticeNotFoundException extends Exception {
 	
-	 public PracticeNotFoundException(String msg)
-	  {
+	 public PracticeNotFoundException(String msg) {
 		     super(msg);
 	  }
 }

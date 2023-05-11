@@ -1,11 +1,8 @@
 package com.fissionlab.trainig.tracker.service.impl;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,20 +24,20 @@ public class PracticeServiceImpl implements PracticeService {
 
 		try {
 			List<Practice> practices = practiceRepository.findAll();
-			if(practices==null) {
-				System.out.println("=========================================="+practices);
+			if (practices == null) {
+				System.out.println("==========================================" + practices);
 			}
-			System.out.println("=========================================="+practices);
+			System.out.println("==========================================" + practices);
 //			return practices.stream().map(this::convertToDto).collect(Collectors.toList());
-			List<PracticeDTO> practiceDTOs= new ArrayList<>();
-			PracticeDTO pDto= new PracticeDTO();
-			for(Practice p: practices) {
+			List<PracticeDTO> practiceDTOs = new ArrayList<>();
+			PracticeDTO pDto = new PracticeDTO();
+			for (Practice p: practices) {
 			//	pDto=convertToDto(p);
 				practiceDTOs.add(pDto);
 			}
 			return practiceDTOs;
 		} catch (Exception e) {
-			throw new PracticeNotFoundException("Practice Details not found"+e);
+			throw new PracticeNotFoundException("Practice Details not found" + e);
 		}
 	}
 

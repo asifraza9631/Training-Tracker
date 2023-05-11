@@ -1,16 +1,17 @@
 package com.fissionlab.trainig.tracker.utils;
 
+import com.fissionlab.trainig.tracker.DTO.ClientDTO;
 import com.fissionlab.trainig.tracker.DTO.EmployeeDTO;
 import com.fissionlab.trainig.tracker.exception.CustomValidationException;
 
+
 public class Validator {
 
-    public static void  isValidate(EmployeeDTO employeeDTO) throws CustomValidationException {
-        if (employeeDTO.getOrgEmpId() == null || employeeDTO.getOrgEmpId().isEmpty() ) {
+    public static void isValidate(EmployeeDTO employeeDTO) throws CustomValidationException {
+        if (employeeDTO.getOrgEmpId() == null || employeeDTO.getOrgEmpId().isEmpty()) {
             throw new CustomValidationException("OrgEmpId cannot be null or empty");
         }
-        if(!employeeDTO.getOrgEmpId().startsWith("FL"))
-        {
+        if (!employeeDTO.getOrgEmpId().startsWith("FL")) {
             throw new CustomValidationException("OrgEmpId not start with FL");
         }
 
@@ -61,4 +62,17 @@ public class Validator {
         }
     }
 
+    public static void isValidateClient(ClientDTO clientDTO) throws CustomValidationException {
+
+        if (clientDTO.getName() == null || clientDTO.getName().isEmpty()) {
+            throw new CustomValidationException("name cannot be null or empty");
+        }
+        if (clientDTO.getStatus() == null || clientDTO.getStatus().isEmpty()) {
+            throw new CustomValidationException("status cannot be null or empty");
+        }
+        if (clientDTO.getOrgId() == null || clientDTO.getOrgId().isEmpty()) {
+            throw new CustomValidationException("OrgId cannot be null or empty");
+        }
+
+    }
 }

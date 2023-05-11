@@ -45,5 +45,4 @@ public class Organization {
 	 * 
 	 * @JsonBackReference private List<Departments> departments = new ArrayList<>();
 	 */
-
 }

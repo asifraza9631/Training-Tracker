@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.fissionlab.trainig.tracker.DTO.PracticeDTO;
-import com.fissionlab.trainig.tracker.entity.Practice;
 import com.fissionlab.trainig.tracker.exception.PracticeNotFoundException;
 
 @Service

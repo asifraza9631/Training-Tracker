@@ -23,8 +23,8 @@ public class DepartmentController {
 	private DepartmentServiceImpl departmentService;
 
 	@GetMapping(EndPointConfig.ORGANIZATION_DEPARTMENT_DETAILS)
-	public ResponseEntity<List<Departments>> getAllDepartment() throws DepartmentNotFoundException{	    
-		    List<Departments>  departments= departmentService.getAllDepartments();
+	public ResponseEntity<List<Departments>> getAllDepartment() throws DepartmentNotFoundException {
+		    List<Departments>  departments = departmentService.getAllDepartments();
 
 		if (departments.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -34,7 +34,7 @@ public class DepartmentController {
 	}
 
     @GetMapping(EndPointConfig.ORGANIZATION_DEPARTMENT_DETAILS_SEARCH)
-    public ResponseEntity<List<Departments>> seachDeparmentBasedOnName(@RequestParam("query") String query)  throws DepartmentNotFoundException {
+    public ResponseEntity<List<Departments>> searchDeparmentBasedOnName(@RequestParam("query") String query)  throws DepartmentNotFoundException {
         List<Departments> skills = departmentService.getDepartmentListBasedOnName(query);
 
         if (skills.isEmpty()) {
