@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource;
 @TestPropertySource(properties = {
 		"spring.datasource.url=jdbc:tc:postgresql:14-alpine:///todos"
 })
-class SpringBootBaseProjectApplicationTests {
+class ResourceRadarApplicationTests {
 
 	@Test
 	void contextLoads() {

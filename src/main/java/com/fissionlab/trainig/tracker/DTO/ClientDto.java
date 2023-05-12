@@ -1,13 +1,12 @@
 package com.fissionlab.trainig.tracker.DTO;
 
-import com.fissionlab.trainig.tracker.entity.Project;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class ClientDTO {
+public class ClientDto {
     private String id;
 
 
@@ -27,6 +26,6 @@ public class ClientDTO {
 
     private List<ProjectDTO> projects;
 
-    private  ManagerDTO managerDTO;
+    private ManagerDto managerDto;
 
 }

@@ -7,6 +7,7 @@ public class EndPointConfig  extends  Object {
     public static final String API_V1 = "/api/v1";
     public static final String API_V2 = "/api/v2";
 
+    public static final String CLIENT = "/client";
     public static final String ORGANIZATION_DETAILS = "/organization/details";
 
     public static final String ORGANIZATION_PRACTICE_DETAILS = "/organization/practices";
