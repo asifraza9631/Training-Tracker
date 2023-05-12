@@ -2,6 +2,7 @@ package com.fissionlab.trainig.tracker.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fissionlab.trainig.tracker.DTO.PracticeDTO;
 import com.fissionlab.trainig.tracker.config.EndPointConfig;
-import com.fissionlab.trainig.tracker.entity.Practice;
 import com.fissionlab.trainig.tracker.exception.PracticeNotFoundException;
 import com.fissionlab.trainig.tracker.service.impl.PracticeServiceImpl;
 
 @RestController
 @RequestMapping(EndPointConfig.API_V1)
+@Tag(name = "practices")
 public class PracticeController {
 
 	@Autowired
 	private PracticeServiceImpl practiceService;
 
-	@GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS)
+	@GetMapping(EndPointConfig.PRACTICE_DETAILS)
 	public ResponseEntity<List<PracticeDTO>> getAllPractices() throws PracticeNotFoundException {
 		List<PracticeDTO> practices = practiceService.getAllPractices();
 
@@ -34,7 +35,7 @@ public class PracticeController {
 		}
 	}
 
-	@GetMapping(EndPointConfig.ORGANIZATION_PRACTICE_DETAILS_SEARCH)
+	@GetMapping(EndPointConfig.PRACTICE_DETAILS_SEARCH)
 	public ResponseEntity<List<PracticeDTO>> searchPracticeBasedOnName(@RequestParam("query") String query)
 			throws PracticeNotFoundException {
 //		List<Practice> skills = practiceService.getPracticeListBasedOnName(query);

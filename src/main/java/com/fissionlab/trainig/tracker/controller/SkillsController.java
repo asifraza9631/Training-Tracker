@@ -2,6 +2,7 @@ package com.fissionlab.trainig.tracker.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,13 @@ import com.fissionlab.trainig.tracker.service.impl.SkillsServiceImpl;
 
 @RestController
 @RequestMapping(EndPointConfig.API_V1)
+@Tag(name = "skills")
 public class SkillsController {
 
 	@Autowired
 	private SkillsServiceImpl skillsService;
 
-	@GetMapping(EndPointConfig.ORGANIZATION_SKILLS_DETAILS)
+	@GetMapping(EndPointConfig.SKILLS)
 	public ResponseEntity<List<Skills>> getAllSkills() throws SkillsNotFoundException {
 		List<Skills> skills = skillsService.getAllSkills();
 
@@ -33,7 +35,7 @@ public class SkillsController {
 		}
 
 	}
-	 @GetMapping(EndPointConfig.ORGANIZATION_SKILLS_DETAILS_SEARCH)
+	 @GetMapping(EndPointConfig.SKILLS_DETAILS_SEARCH)
 	    public ResponseEntity<List<Skills>> searchSkillsBasedOnName(@RequestParam("query") String query)  throws SkillsNotFoundException {
 	        List<Skills> skills = skillsService.getSkillsListBasedOnName(query);
 
