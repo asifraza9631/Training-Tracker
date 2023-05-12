@@ -17,8 +17,6 @@ public interface ClientRepository extends JpaRepository<Client, String> {
 
 	List<Client> findByNameContainingIgnoreCase(String name);
 
-	Optional<Client> findById(String clientId);
-
 
 	@Modifying
 	@Query("UPDATE Client c SET c.status = :status WHERE c.id = :id")

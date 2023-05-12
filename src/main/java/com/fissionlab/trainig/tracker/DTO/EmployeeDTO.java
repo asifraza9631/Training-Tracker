@@ -1,11 +1,19 @@
 package com.fissionlab.trainig.tracker.DTO;
 
 import com.fissionlab.trainig.tracker.entity.Departments;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDTO {
 
     private String orgEmpId;
@@ -31,5 +39,9 @@ public class EmployeeDTO {
     private LocalDateTime createdTime;
     private String modifiedBy;
     private LocalDateTime modifiedTime;
+
+    public EmployeeDTO(String orgEmpId) {
+        this.orgEmpId = orgEmpId;
+    }
 
 }

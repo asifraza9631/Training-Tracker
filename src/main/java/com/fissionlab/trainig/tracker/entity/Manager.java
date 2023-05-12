@@ -33,11 +33,8 @@ public class Manager {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-
     @OneToOne
     @JoinColumn(name = "client_id")
     @JsonBackReference
     private  Client client;
-
-    // getters and setters
 }

@@ -6,8 +6,6 @@ import java.time.ZoneOffset;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +40,6 @@ public class Practice extends AuditableEntity {
 
 	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
-	
-
 
 	public LocalDateTime getCreatedDate() {
 		return createdDate;
@@ -65,14 +61,12 @@ public class Practice extends AuditableEntity {
 		this.modifiedDate = LocalDateTime.ofInstant(modifiedDateTime, ZoneOffset.UTC);
 	}
 
-	
 	public Instant getCreatedDateTime() {
-        return createdDate.atZone(ZoneOffset.UTC).toInstant();
-    }
+		return createdDate.atZone(ZoneOffset.UTC).toInstant();
+	}
 
 	public Instant getModifiedDateTime() {
-		 return modifiedDate.atZone(ZoneOffset.UTC).toInstant();
-    }
-
+		return modifiedDate.atZone(ZoneOffset.UTC).toInstant();
+	}
 
 }

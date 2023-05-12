@@ -1,5 +1,6 @@
 package com.fissionlab.trainig.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -124,30 +125,55 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public ClientDTO getClientById(String id, HttpServletRequest request) throws Exception {
-
-		  ClientDTO clientDTO = new ClientDTO();
+	public ClientDTO getClientById(String id) throws Exception {
+		ClientDTO clientDTO = new ClientDTO();
 		try {
-			Optional<Client> optionalClient = clientRepository.findById(id);
-			if (optionalClient.isPresent()) {
-			                 Client client = optionalClient.get();
-							 clientDTO.setId(client.getId());
-							 clientDTO.setName(client.getName());
-							 clientDTO.setOrgId(client.getOrgId());
-							 clientDTO.setStatus(client.getStatus());
-			              Manager manager = client.getManager();
-						  ManagerDTO managerDTO = new ManagerDTO();
-						  managerDTO.setName(manager.getName());
-						  managerDTO.setType(manager.getType());
-								   clientDTO.setManagerDTO(managerDTO);
-							 return  clientDTO;
-			} else {
-				throw new Exception("Client not found with ID: " + id);
+		Optional<Client> optionalClient = clientRepository.findById(id);
+		if (optionalClient.isPresent()) {
+			Client client = optionalClient.get();
+			clientDTO.setId(client.getId());
+			clientDTO.setName(client.getName());
+			clientDTO.setOrgId(client.getOrgId());
+			clientDTO.setStatus(client.getStatus());
+			
+			List<Project> projects = client.getProjects();
+			List<ProjectDTO> projectDTOs = new ArrayList<ProjectDTO>();
+			for(Project project : projects) {
+			 ProjectDTO dto = new ProjectDTO();
+			 dto.setId(project.getId());
+			 dto.setName(project.getName());
+			 dto.setType(project.getType());
+			 dto.setClientId(project.getClient().getId());
+			 dto.setOrgId(project.getOrgId());
+			 dto.setStartDate(project.getStartDate());
+			 dto.setEndDate(project.getEndDate()); 
+			 projectDTOs.add(dto);	
 			}
-		} catch (Exception e) {
-			throw new Exception("Error occurred while getting client by ID: " + id, e);
+			
+			clientDTO.setProjects(projectDTOs);
+			
+			Manager manager = client.getManager();
+			ManagerDTO managerDTO = new ManagerDTO();
+			managerDTO.setId(manager.getId());
+			managerDTO.setName(manager.getName());
+			managerDTO.setType(manager.getType());
+			managerDTO.setCreatedBy(manager.getCreatedBy());
+			managerDTO.setModifiedBy(manager.getModifiedBy());
+			managerDTO.setCreatedAt(manager.getCreatedAt());
+			managerDTO.setModifiedAt(manager.getModifiedAt());
+			clientDTO.setManagerDTO(managerDTO);
+			
+			
+			clientDTO.setStartDate(client.getStartDate());
+			clientDTO.setEndDate(client.getEndDate());
+		} else {
+			throw new Exception("Client not found with ID: " + id);
 		}
+	} catch (Exception e) {
+		throw new Exception("Error occurred while getting client by ID: " + id, e);
 	}
+		return clientDTO;
+}
 
 	@Override
 	public String updateClientById(String id, String status) {

@@ -70,6 +70,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.5'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+implementation group: 'org.hibernate', name: 'hibernate-core', version: '6.2.2.Final', ext: 'pom'
+	
 
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

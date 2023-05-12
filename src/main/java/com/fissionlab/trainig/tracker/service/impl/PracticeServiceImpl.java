@@ -33,9 +33,13 @@ public class PracticeServiceImpl implements PracticeService {
 			System.out.println("=========================================="+practices);
 //			return practices.stream().map(this::convertToDto).collect(Collectors.toList());
 			List<PracticeDTO> practiceDTOs= new ArrayList<>();
-			PracticeDTO pDto= new PracticeDTO();
 			for(Practice p: practices) {
-			//	pDto=convertToDto(p);
+				PracticeDTO pDto= new PracticeDTO();
+				pDto.setId(p.getId());
+				pDto.setName(p.getName());
+				pDto.setOrgId(p.getOrgId());
+				pDto.setCreatedDateTime(p.getCreatedDate());
+				pDto.setModifiedDateTime(p.getModifiedDate());
 				practiceDTOs.add(pDto);
 			}
 			return practiceDTOs;

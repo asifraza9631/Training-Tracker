@@ -24,7 +24,6 @@ import com.fissionlab.trainig.tracker.repository.PracticeRepository;
 import com.fissionlab.trainig.tracker.repository.SkillsRepository;
 import com.fissionlab.trainig.tracker.service.OrganizationService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -54,11 +53,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
-	public OrganizationDTO getOrgCompleteDetails(HttpServletRequest request) {
+	public OrganizationDTO getOrgCompleteDetails(String request) {
 		
-		String orgId = request.getHeader("orgId");
+//		String orgId = request.getHeader("orgId");
 		OrganizationDTO org = new OrganizationDTO();
-		Optional<Organization> orgOpt = organizationRepository.findById(orgId);
+		Optional<Organization> orgOpt = organizationRepository.findById(request);
 		if (orgOpt.isPresent()) {
 			org.setId(orgOpt.get().getId());
 			org.setName(orgOpt.get().getName());
@@ -101,22 +100,24 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 		List<Practice> practices = practiceRepository.findAll();
 		List<PracticeDTO> practiceDTOs = new ArrayList<>();
-		/*if (!practices.isEmpty()) {
+		if (!practices.isEmpty()) {
 			for (Practice practice : practices) {
 				PracticeDTO practiceDTO = new PracticeDTO();
 				practiceDTO.setId(practice.getId());
 				practiceDTO.setName(practice.getName());
+				practiceDTO.setOrgId(practice.getOrgId());
 				practiceDTO.setCreatedDateTime(practice.getCreatedDate());
 				practiceDTO.setModifiedDateTime(practice.getModifiedDate());
 				
 				practiceDTOs.add(practiceDTO);
 			}
 		}
-*/		org.setPractices(practiceDTOs);
+		org.setPractices(practiceDTOs);
 
 		List<Skills> skills = skillsRepository.findAll();
 		List<SkillsDTO> skillsDTOs = new ArrayList<>();
 		if (!skills.isEmpty()) {
+			 log.info("checking is Skills empty ");
 			for (Skills skill : skills) {
 				SkillsDTO skillsDTO = new SkillsDTO();
 				skillsDTO.setId(skill.getId());

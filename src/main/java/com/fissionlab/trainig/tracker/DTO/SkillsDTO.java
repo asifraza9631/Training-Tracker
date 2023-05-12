@@ -11,9 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SkillsDTO {
 
-	private String id;
+    private String id;
 
-	private String name;
-
-
+    private String name;
 }

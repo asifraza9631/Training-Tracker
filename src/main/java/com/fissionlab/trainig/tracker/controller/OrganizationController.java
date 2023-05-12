@@ -58,7 +58,7 @@ public class OrganizationController {
 	}
 
 	@GetMapping("/getorg")
-	public  ResponseEntity<OrganizationDTO>  getOrgCompleteDetails(HttpServletRequest request) {
+	public  ResponseEntity<OrganizationDTO>  getOrgCompleteDetails(String request) {
 		
 		
 		OrganizationDTO organizationDTO = organizationServiceImpl.getOrgCompleteDetails(request);

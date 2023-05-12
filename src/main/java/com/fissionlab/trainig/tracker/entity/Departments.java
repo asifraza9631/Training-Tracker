@@ -2,6 +2,7 @@ package com.fissionlab.trainig.tracker.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Departments extends AuditableEntity {
 	@Column(name = "type", nullable = false)
 	private String type;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_department_id")
 	private Departments parentDepartment;
 }

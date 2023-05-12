@@ -30,6 +30,10 @@ public class EndPointConfig  extends  Object {
 
 	public static final String ORGANIZATION_SKILLS_DETAILS_SEARCH = "/organization/skillsSearch";
 
-    public  static  final  String SAVE_EMPLOYEE_DETAILS = "/employee/save";
+    public static final String SAVE_EMPLOYEE_DETAILS = "/employee/save";
+    
+    public static final String EMPLOYEE_ALLOCATIONS = "/employeeallocations";
+    
+    public static final String ID = "/{id}";
 
 }

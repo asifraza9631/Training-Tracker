@@ -33,16 +33,17 @@ public class SkillsController {
 		}
 
 	}
-	 @GetMapping(EndPointConfig.ORGANIZATION_SKILLS_DETAILS_SEARCH)
-	    public ResponseEntity<List<Skills>> searchSkillsBasedOnName(@RequestParam("query") String query)  throws SkillsNotFoundException {
-	        List<Skills> skills = skillsService.getSkillsListBasedOnName(query);
 
-	        if (skills.isEmpty()) {
-	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	        } else {
-	            return new ResponseEntity<>(skills, HttpStatus.OK);
-	        }
-	    }
+	@GetMapping(EndPointConfig.ORGANIZATION_SKILLS_DETAILS_SEARCH)
+	public ResponseEntity<List<Skills>> searchSkillsBasedOnName(@RequestParam("query") String query)
+			throws SkillsNotFoundException {
+		List<Skills> skills = skillsService.getSkillsListBasedOnName(query);
+
+		if (skills.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(skills, HttpStatus.OK);
+		}
+	}
 
 }
-

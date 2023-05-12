@@ -38,7 +38,7 @@ public class Skills extends AuditableEntity {
 
 	// private String org_id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) 
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "org_id")
 	@JsonIgnoreProperties(value = { "hibernateLazyInitializer" })
 	private Organization organization;

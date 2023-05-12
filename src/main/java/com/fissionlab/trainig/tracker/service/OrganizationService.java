@@ -14,6 +14,6 @@ public interface OrganizationService {
 
 	public List<Organization> getAllOrganization();
 	
-	public OrganizationDTO getOrgCompleteDetails(HttpServletRequest request);
+	public OrganizationDTO getOrgCompleteDetails(String request);
 
 }
