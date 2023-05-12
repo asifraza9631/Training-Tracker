@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ManagerDTO {
+public class ManagerDto {
 
    private String id;
 

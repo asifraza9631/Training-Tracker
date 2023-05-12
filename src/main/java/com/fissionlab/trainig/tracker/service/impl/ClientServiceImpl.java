@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.fissionlab.trainig.tracker.DTO.ManagerDTO;
+import com.fissionlab.trainig.tracker.DTO.ManagerDto;
 import com.fissionlab.trainig.tracker.entity.Manager;
 import com.fissionlab.trainig.tracker.enums.ClientStatus;
-import com.fissionlab.trainig.tracker.DTO.ClientDTO;
+import com.fissionlab.trainig.tracker.DTO.ClientDto;
 import com.fissionlab.trainig.tracker.DTO.ProjectDTO;
 import com.fissionlab.trainig.tracker.entity.Project;
 import com.fissionlab.trainig.tracker.repository.ManagerRepository;
@@ -32,12 +32,12 @@ public class ClientServiceImpl implements ClientService {
 
 
 	@Override
-	public Client createClientWithManger(ClientDTO clientDTO, HttpServletRequest request) {
+	public Client createClientWithManger(ClientDto clientDTO, HttpServletRequest request) {
 
 		String orgId = request.getHeader("orgId");
 		Client client = new Client();
 		// create and persist the manager entity
-		ManagerDTO managerDTO = clientDTO.getManagerDTO();
+		ManagerDto managerDTO = clientDTO.getManagerDto();
 		if (managerDTO != null) {
 			Manager manager = new Manager();
 			manager.setCreatedBy(managerDTO.getCreatedBy());
@@ -85,12 +85,12 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client createClient(ClientDTO clientDTO, HttpServletRequest request) {
+	public Client createClient(ClientDto clientDTO, HttpServletRequest request) {
 
 		String orgId = request.getHeader("orgId");
 
 		 Client client = new Client();
-		 ClientDTO clientDTO1 = new ClientDTO();
+		 ClientDto clientDto1 = new ClientDto();
 		 client.setName(clientDTO.getName());
 		 if(clientDTO.getEndDate() !=null)
 		 {
@@ -124,9 +124,9 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public ClientDTO getClientById(String id, HttpServletRequest request) throws Exception {
+	public ClientDto getClientById(String id, HttpServletRequest request) throws Exception {
 
-		  ClientDTO clientDTO = new ClientDTO();
+		  ClientDto clientDTO = new ClientDto();
 		try {
 			Optional<Client> optionalClient = clientRepository.findById(id);
 			if (optionalClient.isPresent()) {
@@ -136,10 +136,10 @@ public class ClientServiceImpl implements ClientService {
 							 clientDTO.setOrgId(client.getOrgId());
 							 clientDTO.setStatus(client.getStatus());
 			              Manager manager = client.getManager();
-						  ManagerDTO managerDTO = new ManagerDTO();
+						  ManagerDto managerDTO = new ManagerDto();
 						  managerDTO.setName(manager.getName());
 						  managerDTO.setType(manager.getType());
-								   clientDTO.setManagerDTO(managerDTO);
+								   clientDTO.setManagerDto(managerDTO);
 							 return  clientDTO;
 			} else {
 				throw new Exception("Client not found with ID: " + id);

@@ -2,6 +2,7 @@ package com.fissionlab.trainig.tracker.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,13 @@ import com.fissionlab.trainig.tracker.service.impl.DepartmentServiceImpl;
 
 @RestController
 @RequestMapping(EndPointConfig.API_V1)
+@Tag(name = "departments")
 public class DepartmentController {
 
 	@Autowired
 	private DepartmentServiceImpl departmentService;
 
-	@GetMapping(EndPointConfig.ORGANIZATION_DEPARTMENT_DETAILS)
+	@GetMapping(EndPointConfig.DEPARTMENT_DETAILS)
 	public ResponseEntity<List<Departments>> getAllDepartment() throws DepartmentNotFoundException{	    
 		    List<Departments>  departments= departmentService.getAllDepartments();
 
@@ -33,7 +35,7 @@ public class DepartmentController {
 		}
 	}
 
-    @GetMapping(EndPointConfig.ORGANIZATION_DEPARTMENT_DETAILS_SEARCH)
+    @GetMapping(EndPointConfig.DEPARTMENT_DETAILS_SEARCH)
     public ResponseEntity<List<Departments>> seachDeparmentBasedOnName(@RequestParam("query") String query)  throws DepartmentNotFoundException {
         List<Departments> skills = departmentService.getDepartmentListBasedOnName(query);
 
