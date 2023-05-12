@@ -24,10 +24,6 @@ public class PracticeServiceImpl implements PracticeService {
 
 		try {
 			List<Practice> practices = practiceRepository.findAll();
-			if (practices == null) {
-				System.out.println("==========================================" + practices);
-			}
-			System.out.println("==========================================" + practices);
 //			return practices.stream().map(this::convertToDto).collect(Collectors.toList());
 			List<PracticeDTO> practiceDTOs = new ArrayList<>();
 			PracticeDTO pDto = new PracticeDTO();
