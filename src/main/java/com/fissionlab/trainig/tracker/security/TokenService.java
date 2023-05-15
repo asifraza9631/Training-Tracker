@@ -3,18 +3,15 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.function.Function;
 
+import org.apache.http.HttpStatus;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.fissionlab.trainig.tracker.DTO.EmployeeDTO;
 import com.fissionlab.trainig.tracker.entity.Employee;
 import com.fissionlab.trainig.tracker.exception.ResourceNotFoundException;
 import com.fissionlab.trainig.tracker.repository.EmployeeRepository;
-
-import org.apache.http.HttpStatus;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -33,6 +30,8 @@ public class TokenService {
     private EmployeeRepository userRepo;
     @Autowired
     private ModelMapper mapper;
+  
+ 
 
     // add the jwt token genertaed with the secret key from properties file to the
     // header.
@@ -40,13 +39,13 @@ public class TokenService {
     public void addTokenToAuthHeader(String email, HttpServletResponse response) throws ResourceNotFoundException {
         log.info(email + " adding email");
         Employee emp = userRepo.findByEmail(email);
-
+        System.out.println(emp.getEmail());
 
         String token = null;
 
-        if(emp.getStatus().equalsIgnoreCase("active")) {
+        if(emp != null) {
 
-            EmployeeDTO empdto = mapper.map(emp, EmployeeDTO.class);
+           EmployeeDTO empdto = mapper.map(emp, EmployeeDTO.class);
             token = createToken(empdto);
             response.addHeader("accessToken", token);
             response.setStatus(HttpStatus.SC_OK);
